@@ -2,29 +2,40 @@ local helpers = require("projectrc.helpers")
 
 local M = {}
 
+M.defaults = {
+  env = "PROJECTRC",
+  fallback_file = "default",
+  fallback_value = {},
+  callback = nil,
+}
+
 --- Try to require the module: "{parent}.{file}". If it fails, return the
---- `return_value`.
+--- value or the retun value of the `default` parameter.
 ---@param parent string The parent directory of the module to require.
----@param file string | nil The file in the parent directory to require.
----@param default any | nil The value to return if no module can be required. If it
+---@param file string The file in the parent directory to require.
+---@param default any The value to return if no module can be required. If it
 --- is a function, call it and return the result. If it is not a function, return
 --- the value.
 ---@return any result The required module or the value of `return_value`.
 M.try_require = function(parent, file, default)
-  local module = helpers.module_join(parent, file)
-  local ok, result = pcall(require, module)
-  if ok then
-    return result
-  else
-    return helpers.call_or_return(default)
+  if file ~= "" then
+    local module = helpers.module_join(parent, file)
+    local ok, result = pcall(require, module)
+    if ok then
+      return result
+    end
   end
+  return helpers.call_or_return(default)
 end
 
---- Get the name of the current project. This name can be retrieved from the
---- environment variable PROJECTRC. If the environment variable is not set,
---return an empty string.
-M.name = function()
-  local name = vim.fn.getenv("PROJECTRC")
+--- Get the value of `env`. If it is not set, return the value of the default
+--- variable: require("projectrc").defaults.env. If an environment variable is
+--- not set, return an empty string.
+---@param env string | nil The environment variable to get the value of.
+---@return string name The value of the environment variable.
+M.get_name = function(env)
+  env = env or M.defaults.env
+  local name = vim.fn.getenv(env)
   if name == vim.NIL then
     return ""
   else
@@ -41,18 +52,15 @@ end
 M.require = function(parent, opts)
   opts = helpers.merge_opts(opts, M.defaults)
 
+  local file = M.get_name(opts.env)
   local default = function()
     return opts.callback(parent, opts.fallback_file, opts.fallback_value)
   end
 
-  return M.try_require(parent, M.name(), default)
+  return M.try_require(parent, file, default)
 end
 
-M.defaults = {
-  fallback_file = "default",
-  fallback_value = {},
-  callback = M.try_require,
-}
+M.defaults.callback = M.try_require
 
 --- Change the default options for the whole module.
 ---@param opts table | nil The options to change the default options to.

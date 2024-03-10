@@ -1,14 +1,16 @@
 local M = {}
 
 --- Similar to `join`, but now for module names, which are separated by a dot.
----@param module string The module name. For example `helpers`.
+---@param parent string The module name. For example `helpers`.
 ---@vararg string The parts of the module name to join. For example `path` and
 --join
 ---@return string module The joined module name. For example
 --`helpers.path.join`.
-M.module_join = function(module, ...)
+M.module_join = function(parent, ...)
   local parts = { ... }
-  return module .. "." .. table.concat(parts, ".")
+  local module = parent .. "." .. table.concat(parts, ".")
+  module = module:gsub("%.+$", ""):gsub("%.lua$", "")
+  return module
 end
 
 
