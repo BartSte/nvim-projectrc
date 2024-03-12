@@ -1,4 +1,4 @@
-# README - nvim-projectrc
+# Projectrc
 
 A minimal approach to manage your project specific settings in Neovim.
 
