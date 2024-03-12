@@ -59,7 +59,7 @@ function returns `nil` by default.
 
 Lets illustrate this with some examples.
 
-## Example - require
+### Example - require
 
 - `PROJECTRC` is set to `myproject`.
 
@@ -70,7 +70,7 @@ will happen:
 - If this fails, it will try to source the file `/some/path/default.lua`.
 - If this fails, the function returns `nil` by default.
 
-## Example - directory structure
+### Example - directory structure
 
 Lets assume you have the following directory structure:
 
@@ -102,7 +102,7 @@ Now if you `PROJECTRC` is set to `myproject`, the following will happen:
 
 Note that in the last case, the `default.lua` file is not sourced.
 
-## Example - using lazy
+### Example - using lazy
 
 In the example above, you would call the `require("projectrc").require` function
 using the package manager [lazy](www.github.com/folke/lazy.nvim) as is explained
@@ -137,7 +137,7 @@ Similarly to the previous example, the `config/lsp/init.lua` will always be
 sourced. The `myproject.lua` file will be sourced if `PROJECTRC` is set to
 `myproject`, and the `default.lua` file will be sourced otherwise.
 
-## Example - ftplugin
+### Example - ftplugin
 
 Sometimes you want your project specific settings to be sourced when you enter a
 file of a certain filetype. Lets say you want a textwidth of 100 for your
@@ -202,7 +202,7 @@ Now the following will happen:
 
 The plugin can be configured on a global level but also on a function level.
 
-## Global configuration
+### Global configuration
 
 The following global configuration options are available with their defaults:
 
@@ -249,7 +249,7 @@ local function callback(...)
 end
 ```
 
-## Function level configuration
+### Function level configuration
 
 Lastly, you can use the options discussed above to configure the behavior of
 only 1 function call to `require("projectrc").require`. This function accepts
