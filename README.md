@@ -1,24 +1,8 @@
-## Projectrc
+# Projectrc
 
 A minimal approach to manage your project specific settings in Neovim.
 
-## Table of contents
-
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Example - require](#example---require)
-  - [Example - directory structure](#example---directory-structure)
-  - [Example - using lazy](#example---using-lazy)
-  - [Example - ftplugin](#example---ftplugin)
-- [Configuration](#configuration)
-  - [Global configuration](#global-configuration)
-  - [Function level configuration](#function-level-configuration)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
+# Introduction
 
 `nvim-projectrc` is a plugin for Neovim that allows you to manage your project
 specific settings in a simple, yet effective way.
@@ -37,7 +21,7 @@ based on the following requirements:
 
 See the [usage](#usage) section for more information.
 
-## Installation
+# Installation
 
 Install the plugin using your favorite plugin manager. For example, using lazy:
 
@@ -52,7 +36,7 @@ return {
 Lazy loading is not recommended as you need this plugin to load the configuration
 of other plugins.
 
-## Usage
+# Usage
 
 This plugin exposes the following 2 components that are of key interest:
 
@@ -75,7 +59,7 @@ function returns `nil` by default.
 
 Lets illustrate this with some examples.
 
-### Example - require
+## Example - require
 
 - `PROJECTRC` is set to `myproject`.
 
@@ -86,7 +70,7 @@ will happen:
 - If this fails, it will try to source the file `/some/path/default.lua`.
 - If this fails, the function returns `nil` by default.
 
-### Example - directory structure
+## Example - directory structure
 
 Lets assume you have the following directory structure:
 
@@ -118,7 +102,7 @@ Now if you `PROJECTRC` is set to `myproject`, the following will happen:
 
 Note that in the last case, the `default.lua` file is not sourced.
 
-### Example - using lazy
+## Example - using lazy
 
 In the example above, you would call the `require("projectrc").require` function
 using the package manager [lazy](www.github.com/folke/lazy.nvim) as is explained
@@ -153,7 +137,7 @@ Similarly to the previous example, the `config/lsp/init.lua` will always be
 sourced. The `myproject.lua` file will be sourced if `PROJECTRC` is set to
 `myproject`, and the `default.lua` file will be sourced otherwise.
 
-### Example - ftplugin
+## Example - ftplugin
 
 Sometimes you want your project specific settings to be sourced when you enter a
 file of a certain filetype. Lets say you want a textwidth of 100 for your
@@ -214,11 +198,11 @@ Now the following will happen:
   exists. It will return a table with the `setup` function.
 - You call the `setup` function, which will set your configuration.
 
-## Configuration
+# Configuration
 
 The plugin can be configured on a global level but also on a function level.
 
-### Global configuration
+## Global configuration
 
 The following global configuration options are available with their defaults:
 
@@ -265,7 +249,7 @@ local function callback(...)
 end
 ```
 
-### Function level configuration
+## Function level configuration
 
 Lastly, you can use the options discussed above to configure the behavior of
 only 1 function call to `require("projectrc").require`. This function accepts
@@ -281,16 +265,16 @@ require("projectrc").require("config.lsp", {
 which will source the file `config/lsp/foo.lua` and return an empty table if
 this file does not exist. This only applies to this specific function call.
 
-## Troubleshooting
+# Troubleshooting
 
 If you encounter any issues, please report them on the issue tracker at:
 [projectrc issues](https://github.com/BartSte/nvim-projectrc/issues)
 
-## Contributing
+# Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING](./CONTRIBUTING.md) for
 more information.
 
-## License
+# License
 
 Distributed under the [MIT License](./LICENCE).
