@@ -3,23 +3,23 @@
 ==============================================================================
 Table of Contents                                *projectrc-table-of-contents*
 
-1. README - nvim-projectrc                 |projectrc-readme---nvim-projectrc|
-  - Table of contents    |projectrc-readme---nvim-projectrc-table-of-contents|
-  - Introduction              |projectrc-readme---nvim-projectrc-introduction|
-  - Installation              |projectrc-readme---nvim-projectrc-installation|
-  - Usage                            |projectrc-readme---nvim-projectrc-usage|
-  - Configuration            |projectrc-readme---nvim-projectrc-configuration|
-  - Troubleshooting        |projectrc-readme---nvim-projectrc-troubleshooting|
-  - Contributing              |projectrc-readme---nvim-projectrc-contributing|
-  - License                        |projectrc-readme---nvim-projectrc-license|
+1. Projectrc                                             |projectrc-projectrc|
+  - Table of contents                  |projectrc-projectrc-table-of-contents|
+  - Introduction                            |projectrc-projectrc-introduction|
+  - Installation                            |projectrc-projectrc-installation|
+  - Usage                                          |projectrc-projectrc-usage|
+  - Configuration                          |projectrc-projectrc-configuration|
+  - Troubleshooting                      |projectrc-projectrc-troubleshooting|
+  - Contributing                            |projectrc-projectrc-contributing|
+  - License                                      |projectrc-projectrc-license|
 
 ==============================================================================
-1. README - nvim-projectrc                 *projectrc-readme---nvim-projectrc*
+1. Projectrc                                             *projectrc-projectrc*
 
 A minimal approach to manage your project specific settings in Neovim.
 
 
-TABLE OF CONTENTS        *projectrc-readme---nvim-projectrc-table-of-contents*
+TABLE OF CONTENTS                      *projectrc-projectrc-table-of-contents*
 
 - |projectrc-introduction|
 - |projectrc-installation|
@@ -36,7 +36,7 @@ TABLE OF CONTENTS        *projectrc-readme---nvim-projectrc-table-of-contents*
 - |projectrc-license|
 
 
-INTRODUCTION                  *projectrc-readme---nvim-projectrc-introduction*
+INTRODUCTION                                *projectrc-projectrc-introduction*
 
 `nvim-projectrc` is a plugin for Neovim that allows you to manage your project
 specific settings in a simple, yet effective way.
@@ -56,7 +56,7 @@ based on the following requirements:
 See the |projectrc-usage| section for more information.
 
 
-INSTALLATION                  *projectrc-readme---nvim-projectrc-installation*
+INSTALLATION                                *projectrc-projectrc-installation*
 
 Install the plugin using your favorite plugin manager. For example, using lazy:
 
@@ -72,7 +72,7 @@ Lazy loading is not recommended as you need this plugin to load the
 configuration of other plugins.
 
 
-USAGE                                *projectrc-readme---nvim-projectrc-usage*
+USAGE                                              *projectrc-projectrc-usage*
 
 This plugin exposes the following 2 components that are of key interest:
 
@@ -240,7 +240,7 @@ Now the following will happen:
 - You call the `setup` function, which will set your configuration.
 
 
-CONFIGURATION                *projectrc-readme---nvim-projectrc-configuration*
+CONFIGURATION                              *projectrc-projectrc-configuration*
 
 The plugin can be configured on a global level but also on a function level.
 
@@ -310,19 +310,19 @@ which will source the file `config/lsp/foo.lua` and return an empty table if
 this file does not exist. This only applies to this specific function call.
 
 
-TROUBLESHOOTING            *projectrc-readme---nvim-projectrc-troubleshooting*
+TROUBLESHOOTING                          *projectrc-projectrc-troubleshooting*
 
 If you encounter any issues, please report them on the issue tracker at:
 projectrc issues <https://github.com/BartSte/nvim-projectrc/issues>
 
 
-CONTRIBUTING                  *projectrc-readme---nvim-projectrc-contributing*
+CONTRIBUTING                                *projectrc-projectrc-contributing*
 
 Contributions are welcome! Please see CONTRIBUTING <./CONTRIBUTING.md> for more
 information.
 
 
-LICENSE                            *projectrc-readme---nvim-projectrc-license*
+LICENSE                                          *projectrc-projectrc-license*
 
 Distributed under the MIT License <./LICENCE>.
 
