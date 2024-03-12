@@ -8,7 +8,7 @@ A minimal approach to manage your project specific settings in Neovim.
 specific settings in a simple, yet effective way.
 
 I build this plugin because I have only small differences between my projects,
-e.g., different textwidths, linters, and language servers. I did not want to
+e.g., different text widths, linters, and language servers. I did not want to
 create a new configuration file for each project, and I surely did not want to
 place if statements all over my configuration. As such, `nvim-projectrc` is
 based on the following requirements:
@@ -55,7 +55,7 @@ The `require("projectrc").require` function takes a path to a directory
 containing multiple configuration files. Here it will first try to source the
 file with the name that corresponds to the `PROJECTRC` environment variable. If
 this fails, it will try to source the file `default.lua`. If this fails, the
-function returns an empty table.
+function returns `nil` by default.
 
 Lets illustrate this with some examples.
 
@@ -68,7 +68,7 @@ will happen:
 
 - It will try to source the file `/some/path/myproject.lua`.
 - If this fails, it will try to source the file `/some/path/default.lua`.
-- If this fails, the function returns an empty table.
+- If this fails, the function returns `nil` by default.
 
 ### Example - directory structure
 
@@ -206,22 +206,64 @@ The plugin can be configured on a global level but also on a function level.
 
 The following global configuration options are available with their defaults:
 
-````lua
+```lua
 require("projectrc").setup({
     -- The name of the environment variable that holds the project identifier.
     env = "PROJECTRC",
     -- The name of the file that is sourced when the project config is not found.
     fallback_file = "default.lua",
     -- The value that is returned when the `fallback_file` is not found.
-    fallback_value = {},
+    fallback_value = nil,
     -- Callback function that is called when the project config is not found.
+    -- It must take the following tree arguments:
+    -- - parent: the parent directory of the project config.
+    -- - fallback_file: the name of the file to source, e.g., "default".
+    -- - fallback_value: the value to return when the fallback file cannot be
+    --   sourced.
+    -- Note that the last two arguments can be configured using the options
+    -- above.
     callback = require("projectrc").try_require
 })
 ```
 
-TODO: explain the configuration options above.
+The `callback` needs some extra explanation. By the default, the
+`require("projectrc").try_require` function is used. However, you can replace
+this one with any function you like, as long as adheres to the following
+signature:
+
+```lua
+  function(opts.fallback_file, opts.fallback_value)
+    -- Your custom logic here.
+  end
+```
+
+For example, if you want to avoid sourcing the `fallback_file` for some specific
+project, you can do the following:
+
+```lua
+local function callback(...)
+    local prc = require("projectrc")
+    if prc.get_name() ~= "myproject" then
+        return prc.try_require(...)
+    end
+end
+```
 
 ### Function level configuration
+
+Lastly, you can use the options discussed above to configure the behavior of
+only 1 function call to `require("projectrc").require`. This function accepts
+the same `opts` table that is passed to `setup`. For example:
+
+```lua
+require("projectrc").require("config.lsp", {
+    fallback_file = "foo",
+    fallback_value = {}
+})
+```
+
+which will source the file `config/lsp/foo.lua` and return an empty table if
+this file does not exist. This only applies to this specific function call.
 
 ## Troubleshooting
 
@@ -236,4 +278,3 @@ more information.
 ## License
 
 Distributed under the [MIT License](./LICENCE).
-````

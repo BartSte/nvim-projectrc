@@ -5,7 +5,7 @@ local M = {}
 M.defaults = {
   env = "PROJECTRC",
   fallback_file = "default",
-  fallback_value = {},
+  fallback_value = nil,
   callback = nil,
 }
 
