@@ -3,39 +3,29 @@
 ==============================================================================
 Table of Contents                                *projectrc-table-of-contents*
 
-  - Projectrc                                            |projectrc-projectrc|
-  - Table of contents                            |projectrc-table-of-contents|
-  - Introduction                                      |projectrc-introduction|
-  - Installation                                      |projectrc-installation|
-  - Usage                                                    |projectrc-usage|
-  - Configuration                                    |projectrc-configuration|
-  - Troubleshooting                                |projectrc-troubleshooting|
-  - Contributing                                      |projectrc-contributing|
-  - License                                                |projectrc-license|
+1. Projectrc                                             |projectrc-projectrc|
+2. Introduction                                       |projectrc-introduction|
+3. Installation                                       |projectrc-installation|
+4. Usage                                                     |projectrc-usage|
+  - Example - require                      |projectrc-usage-example---require|
+  - Example - directory structure|projectrc-usage-example---directory-structure|
+  - Example - using lazy                |projectrc-usage-example---using-lazy|
+  - Example - ftplugin                    |projectrc-usage-example---ftplugin|
+5. Configuration                                     |projectrc-configuration|
+  - Global configuration        |projectrc-configuration-global-configuration|
+  - Function level configuration|projectrc-configuration-function-level-configuration|
+6. Troubleshooting                                 |projectrc-troubleshooting|
+7. Contributing                                       |projectrc-contributing|
+8. License                                                 |projectrc-license|
 
-PROJECTRC                                                *projectrc-projectrc*
+==============================================================================
+1. Projectrc                                             *projectrc-projectrc*
 
 A minimal approach to manage your project specific settings in Neovim.
 
 
-TABLE OF CONTENTS                                *projectrc-table-of-contents*
-
-- |projectrc-introduction|
-- |projectrc-installation|
-- |projectrc-usage|
-    - |projectrc-example---require|
-    - |projectrc-example---directory-structure|
-    - |projectrc-example---using-lazy|
-    - |projectrc-example---ftplugin|
-- |projectrc-configuration|
-    - |projectrc-global-configuration|
-    - |projectrc-function-level-configuration|
-- |projectrc-troubleshooting|
-- |projectrc-contributing|
-- |projectrc-license|
-
-
-INTRODUCTION                                          *projectrc-introduction*
+==============================================================================
+2. Introduction                                       *projectrc-introduction*
 
 `nvim-projectrc` is a plugin for Neovim that allows you to manage your project
 specific settings in a simple, yet effective way.
@@ -55,7 +45,8 @@ based on the following requirements:
 See the |projectrc-usage| section for more information.
 
 
-INSTALLATION                                          *projectrc-installation*
+==============================================================================
+3. Installation                                       *projectrc-installation*
 
 Install the plugin using your favorite plugin manager. For example, using lazy:
 
@@ -71,7 +62,8 @@ Lazy loading is not recommended as you need this plugin to load the
 configuration of other plugins.
 
 
-USAGE                                                        *projectrc-usage*
+==============================================================================
+4. Usage                                                     *projectrc-usage*
 
 This plugin exposes the following 2 components that are of key interest:
 
@@ -96,7 +88,7 @@ function returns `nil` by default.
 Lets illustrate this with some examples.
 
 
-EXAMPLE - REQUIRE ~
+EXAMPLE - REQUIRE                          *projectrc-usage-example---require*
 
 - `PROJECTRC` is set to `myproject`.
 
@@ -108,7 +100,7 @@ will happen:
 - If this fails, the function returns `nil` by default.
 
 
-EXAMPLE - DIRECTORY STRUCTURE ~
+EXAMPLE - DIRECTORY STRUCTURE  *projectrc-usage-example---directory-structure*
 
 Lets assume you have the following directory structure:
 
@@ -141,7 +133,7 @@ Now if you `PROJECTRC` is set to `myproject`, the following will happen:
 Note that in the last case, the `default.lua` file is not sourced.
 
 
-EXAMPLE - USING LAZY ~
+EXAMPLE - USING LAZY                    *projectrc-usage-example---using-lazy*
 
 In the example above, you would call the `require("projectrc").require`
 function using the package manager lazy <www.github.com/folke/lazy.nvim> as is
@@ -177,7 +169,7 @@ sourced. The `myproject.lua` file will be sourced if `PROJECTRC` is set to
 `myproject`, and the `default.lua` file will be sourced otherwise.
 
 
-EXAMPLE - FTPLUGIN ~
+EXAMPLE - FTPLUGIN                        *projectrc-usage-example---ftplugin*
 
 Sometimes you want your project specific settings to be sourced when you enter
 a file of a certain filetype. Lets say you want a textwidth of 100 for your
@@ -239,12 +231,13 @@ Now the following will happen:
 - You call the `setup` function, which will set your configuration.
 
 
-CONFIGURATION                                        *projectrc-configuration*
+==============================================================================
+5. Configuration                                     *projectrc-configuration*
 
 The plugin can be configured on a global level but also on a function level.
 
 
-GLOBAL CONFIGURATION ~
+GLOBAL CONFIGURATION            *projectrc-configuration-global-configuration*
 
 The following global configuration options are available with their defaults:
 
@@ -292,7 +285,7 @@ specific project, you can do the following:
 <
 
 
-FUNCTION LEVEL CONFIGURATION ~
+FUNCTION LEVEL CONFIGURATION*projectrc-configuration-function-level-configuration*
 
 Lastly, you can use the options discussed above to configure the behavior of
 only 1 function call to `require("projectrc").require`. This function accepts
@@ -309,19 +302,22 @@ which will source the file `config/lsp/foo.lua` and return an empty table if
 this file does not exist. This only applies to this specific function call.
 
 
-TROUBLESHOOTING                                    *projectrc-troubleshooting*
+==============================================================================
+6. Troubleshooting                                 *projectrc-troubleshooting*
 
 If you encounter any issues, please report them on the issue tracker at:
 projectrc issues <https://github.com/BartSte/nvim-projectrc/issues>
 
 
-CONTRIBUTING                                          *projectrc-contributing*
+==============================================================================
+7. Contributing                                       *projectrc-contributing*
 
 Contributions are welcome! Please see CONTRIBUTING <./CONTRIBUTING.md> for more
 information.
 
 
-LICENSE                                                    *projectrc-license*
+==============================================================================
+8. License                                                 *projectrc-license*
 
 Distributed under the MIT License <./LICENCE>.
 
