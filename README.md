@@ -2,6 +2,22 @@
 
 A minimal approach to manage your project specific settings in Neovim.
 
+## Table of contents
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Example - require](#example---require)
+  - [Example - directory structure](#example---directory-structure)
+  - [Example - using lazy](#example---using-lazy)
+  - [Example - ftplugin](#example---ftplugin)
+- [Configuration](#configuration)
+  - [Global configuration](#global-configuration)
+  - [Function level configuration](#function-level-configuration)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Introduction
 
 `nvim-projectrc` is a plugin for Neovim that allows you to manage your project
