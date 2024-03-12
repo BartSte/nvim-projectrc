@@ -2,6 +2,16 @@ local helpers = require("projectrc.helpers")
 
 local M = {}
 
+---@class defaults The default options for the module.
+---@field env string The name of the environment variable that holds the project
+--- identifier.
+---@field fallback_file string The name of the file that is sourced when the
+--- project config is not found.
+---@field fallback_value any The value that is returned when the `fallback_file`
+--- is not found.
+---@field callback function The function to call when the project config is not
+--- found. It is called with the `parent`, `fallback_file`, and `fallback_value`
+--- as arguments. By default, it is set to the `try_require` function.
 M.defaults = {
   env = "PROJECTRC",
   fallback_file = "default",
