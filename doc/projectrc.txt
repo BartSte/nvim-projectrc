@@ -7,13 +7,7 @@ Table of Contents                                *projectrc-table-of-contents*
 2. Introduction                                       |projectrc-introduction|
 3. Installation                                       |projectrc-installation|
 4. Usage                                                     |projectrc-usage|
-  - Example - require                      |projectrc-usage-example---require|
-  - Example - directory structure|projectrc-usage-example---directory-structure|
-  - Example - using lazy                |projectrc-usage-example---using-lazy|
-  - Example - ftplugin                    |projectrc-usage-example---ftplugin|
 5. Configuration                                     |projectrc-configuration|
-  - Global configuration        |projectrc-configuration-global-configuration|
-  - Function level configuration|projectrc-configuration-function-level-configuration|
 6. Troubleshooting                                 |projectrc-troubleshooting|
 7. Contributing                                       |projectrc-contributing|
 8. License                                                 |projectrc-license|
@@ -88,7 +82,7 @@ function returns `nil` by default.
 Lets illustrate this with some examples.
 
 
-EXAMPLE - REQUIRE                          *projectrc-usage-example---require*
+EXAMPLE - REQUIRE ~
 
 - `PROJECTRC` is set to `myproject`.
 
@@ -100,7 +94,7 @@ will happen:
 - If this fails, the function returns `nil` by default.
 
 
-EXAMPLE - DIRECTORY STRUCTURE  *projectrc-usage-example---directory-structure*
+EXAMPLE - DIRECTORY STRUCTURE ~
 
 Lets assume you have the following directory structure:
 
@@ -133,7 +127,7 @@ Now if you `PROJECTRC` is set to `myproject`, the following will happen:
 Note that in the last case, the `default.lua` file is not sourced.
 
 
-EXAMPLE - USING LAZY                    *projectrc-usage-example---using-lazy*
+EXAMPLE - USING LAZY ~
 
 In the example above, you would call the `require("projectrc").require`
 function using the package manager lazy <www.github.com/folke/lazy.nvim> as is
@@ -169,7 +163,7 @@ sourced. The `myproject.lua` file will be sourced if `PROJECTRC` is set to
 `myproject`, and the `default.lua` file will be sourced otherwise.
 
 
-EXAMPLE - FTPLUGIN                        *projectrc-usage-example---ftplugin*
+EXAMPLE - FTPLUGIN ~
 
 Sometimes you want your project specific settings to be sourced when you enter
 a file of a certain filetype. Lets say you want a textwidth of 100 for your
@@ -237,7 +231,7 @@ Now the following will happen:
 The plugin can be configured on a global level but also on a function level.
 
 
-GLOBAL CONFIGURATION            *projectrc-configuration-global-configuration*
+GLOBAL CONFIGURATION ~
 
 The following global configuration options are available with their defaults:
 
@@ -285,7 +279,7 @@ specific project, you can do the following:
 <
 
 
-FUNCTION LEVEL CONFIGURATION*projectrc-configuration-function-level-configuration*
+FUNCTION LEVEL CONFIGURATION ~
 
 Lastly, you can use the options discussed above to configure the behavior of
 only 1 function call to `require("projectrc").require`. This function accepts
