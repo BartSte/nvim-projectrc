@@ -4,6 +4,7 @@
 Table of Contents                                *projectrc-table-of-contents*
 
 1. README - nvim-projectrc                 |projectrc-readme---nvim-projectrc|
+  - Table of contents    |projectrc-readme---nvim-projectrc-table-of-contents|
   - Introduction              |projectrc-readme---nvim-projectrc-introduction|
   - Installation              |projectrc-readme---nvim-projectrc-installation|
   - Usage                            |projectrc-readme---nvim-projectrc-usage|
@@ -16,6 +17,23 @@ Table of Contents                                *projectrc-table-of-contents*
 1. README - nvim-projectrc                 *projectrc-readme---nvim-projectrc*
 
 A minimal approach to manage your project specific settings in Neovim.
+
+
+TABLE OF CONTENTS        *projectrc-readme---nvim-projectrc-table-of-contents*
+
+- |projectrc-introduction|
+- |projectrc-installation|
+- |projectrc-usage|
+    - |projectrc-example---require|
+    - |projectrc-example---directory-structure|
+    - |projectrc-example---using-lazy|
+    - |projectrc-example---ftplugin|
+- |projectrc-configuration|
+    - |projectrc-global-configuration|
+    - |projectrc-function-level-configuration|
+- |projectrc-troubleshooting|
+- |projectrc-contributing|
+- |projectrc-license|
 
 
 INTRODUCTION                  *projectrc-readme---nvim-projectrc-introduction*
