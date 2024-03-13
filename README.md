@@ -48,7 +48,7 @@ How you set the `PROJECTRC` is up to you. For example, you can set it to the
 basename of the current working directory using the following bash alias:
 
 ```bash
-alias nvim='export PROJECTRC=$(basename $(pwd)); nvim'
+alias nvim='PROJECTRC=$(basename $(pwd)); nvim'
 ```
 
 The `require("projectrc").require` function takes a path to a directory
