@@ -21,6 +21,7 @@ M.defaults = {
 
 --- Try to require the module: "{parent}.{file}". If it fails, return the
 --- value or the retun value of the `default` parameter.
+--- Only missing modules use the fallback. Errors inside existing modules propagate.
 ---@param parent string The parent directory of the module to require.
 ---@param file string The file in the parent directory to require.
 ---@param default any The value to return if no module can be required. If it
@@ -33,6 +34,10 @@ M.try_require = function(parent, file, default)
     local ok, result = pcall(require, module)
     if ok then
       return result
+    end
+    local missing_module = "module '" .. module .. "' not found:"
+    if type(result) ~= "string" or result:sub(1, #missing_module) ~= missing_module then
+      error(result, 0)
     end
   end
   return helpers.call_or_return(default)
