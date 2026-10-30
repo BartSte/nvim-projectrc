@@ -1,4 +1,5 @@
-*projectrc.txt*           For NVIM v0.8.0           Last change: 2024 March 13
+*projectrc.txt*
+                               For NVIM v0.8.0    Last change: 2026 October 30
 
 ==============================================================================
 Table of Contents                                *projectrc-table-of-contents*
@@ -75,13 +76,12 @@ the following bash alias:
 
 The `require("projectrc").require` function takes a Lua module prefix, such as
 `config.lsp`. It first loads the module whose name matches `PROJECTRC` under
-that prefix.
-If that module does not exist, the function loads the `default` module.
-If neither module exists, the function returns `nil` by default.
+that prefix. If that module does not exist, the function loads the `default`
+module. If neither module exists, the function returns `nil` by default.
 
 An existing module with a syntax error, runtime error, or missing dependency
-raises an error. The function does not use the fallback for these errors.
-This rule also applies to the default module.
+raises an error. The function does not use the fallback for these errors. This
+rule also applies to the default module.
 
 Lets illustrate this with some examples.
 
@@ -90,8 +90,8 @@ EXAMPLE - REQUIRE ~
 
 - `PROJECTRC` is set to `myproject`.
 
-Now when you call `require("projectrc").require("config")` the following
-will happen:
+Now when you call `require("projectrc").require("config")` the following will
+happen:
 
 - It will try to load `config.myproject` from `lua/config/myproject.lua`.
 - If that module does not exist, it will try to load `config.default`.
@@ -213,11 +213,11 @@ directory are sourced, as is explained in |ftplugin|:
 
 >lua
     local M = {}
-    
+
     M.setup = function()
         -- your configuration here
     end
-    
+
     return M
 <
 
@@ -313,6 +313,12 @@ projectrc issues <https://github.com/BartSte/nvim-projectrc/issues>
 
 Contributions are welcome! Please see CONTRIBUTING <./CONTRIBUTING.md> for more
 information.
+
+Run the module-loading checks from the repository root:
+
+>text
+    nvim --headless -u NONE -l tests/require.lua
+<
 
 
 ==============================================================================
