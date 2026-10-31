@@ -51,11 +51,15 @@ basename of the current working directory using the following bash alias:
 alias nvim='PROJECTRC=$(basename $(pwd)); nvim'
 ```
 
-The `require("projectrc").require` function takes a path to a directory
-containing multiple configuration files. Here it will first try to source the
-file with the name that corresponds to the `PROJECTRC` environment variable. If
-this fails, it will try to source the file `default.lua`. If this fails, the
-function returns `nil` by default.
+The `require("projectrc").require` function takes a Lua module prefix, such as
+`config.lsp`. It first loads the module whose name matches `PROJECTRC` under
+that prefix.
+If that module does not exist, the function loads the `default` module.
+If neither module exists, the function returns `nil` by default.
+
+An existing module with a syntax error, runtime error, or missing dependency
+raises an error. The function does not use the fallback for these errors.
+This rule also applies to the default module.
 
 Lets illustrate this with some examples.
 
@@ -63,12 +67,14 @@ Lets illustrate this with some examples.
 
 - `PROJECTRC` is set to `myproject`.
 
-Now when you call `require("projectrc").require("/some/path")` the following
+Now when you call `require("projectrc").require("config")` the following
 will happen:
 
-- It will try to source the file `/some/path/myproject.lua`.
-- If this fails, it will try to source the file `/some/path/default.lua`.
-- If this fails, the function returns `nil` by default.
+- It will try to load `config.myproject` from `lua/config/myproject.lua`.
+- If that module does not exist, it will try to load `config.default`.
+- If neither file exists, the function returns `nil` by default.
+
+Errors inside either module propagate to the caller.
 
 ### Example - directory structure
 
@@ -218,8 +224,7 @@ require("projectrc").setup({
     -- It must take the following tree arguments:
     -- - parent: the parent directory of the project config.
     -- - fallback_file: the name of the file to source, e.g., "default".
-    -- - fallback_value: the value to return when the fallback file cannot be
-    --   sourced.
+    -- - fallback_value: the value to return when the fallback file does not exist.
     -- Note that the last two arguments can be configured using the options
     -- above.
     callback = require("projectrc").try_require
@@ -274,6 +279,12 @@ If you encounter any issues, please report them on the issue tracker at:
 
 Contributions are welcome! Please see [CONTRIBUTING](./CONTRIBUTING.md) for
 more information.
+
+Run the module-loading checks from the repository root:
+
+```text
+nvim --headless -u NONE -l tests/require.lua
+```
 
 # License
 
